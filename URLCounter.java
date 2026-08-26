@@ -15,7 +15,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-public class WordCount1 {
+public class URLCounter {
 
     public static class TokenizerMapper
             extends Mapper<Object, Text, Text, IntWritable> {
@@ -25,13 +25,13 @@ public class WordCount1 {
 
         public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
             StringTokenizer itr = new StringTokenizer(value.toString());
-            Pattern pattern = Pattern.compile("href=\".*\"");
+            Pattern pattern = Pattern.compile("href=\"([^\"]*)\"");
             Matcher matcher;
             while (itr.hasMoreTokens()) {
                 word.set(itr.nextToken());
-                pattern.matcher(word);
+                matcher = pattern.matcher(word.toString());
                 if (matcher.find()) {
-                    context.write(matcher.group(0), one);
+                    context.write(new Text(matcher.group(0)), one);
                 }
             }
         }
@@ -48,7 +48,7 @@ public class WordCount1 {
                 sum += val.get();
             }
             result.set(sum);
-            if (result > 5) {
+            if (result.get() > 5) {
                 context.write(key, result);
             }
         }
@@ -74,7 +74,7 @@ public class WordCount1 {
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf, "word count");
-        job.setJarByClass(WordCount1.class);
+        job.setJarByClass(URLCounter.class);
         job.setMapperClass(TokenizerMapper.class);
 
         job.setCombinerClass(IntSumCombiner.class);
