@@ -26,10 +26,13 @@ public class WordCount1 {
         public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
             StringTokenizer itr = new StringTokenizer(value.toString());
             Pattern pattern = Pattern.compile("href=\".*\"");
+            Matcher matcher;
             while (itr.hasMoreTokens()) {
                 word.set(itr.nextToken());
-                Boolean
-                context.write(word, one);
+                pattern.matcher(word);
+                if (matcher.find()) {
+                    context.write(matcher.group(0), one);
+                }
             }
         }
     }
@@ -45,7 +48,7 @@ public class WordCount1 {
                 sum += val.get();
             }
             result.set(sum);
-            if (result >= 5) {
+            if (result > 5) {
                 context.write(key, result);
             }
         }
