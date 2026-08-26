@@ -31,7 +31,7 @@ public class URLCounter {
                 word.set(itr.nextToken());
                 matcher = pattern.matcher(word.toString());
                 if (matcher.find()) {
-                    context.write(new Text(matcher.group(0)), one);
+                    context.write(new Text(matcher.group(0).substring(5)), one);
                 }
             }
         }
