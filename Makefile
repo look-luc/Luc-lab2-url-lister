@@ -7,12 +7,12 @@ USER=$(shell whoami)
 HADOOP_CLASSPATH=$(shell hadoop classpath)
 
 URLCounter.jar: URLCounter.java
-	javac -classpath $(HADOOP_CLASSPATH) -d ./ URLCounter.java
+	javac -source 1.8 -target 1.8 -classpath $(HADOOP_CLASSPATH) -d ./ URLCounter.java
 	jar cf URLCounter.jar URLCounter*.class
 	-rm -f URLCounter*.class
 
 prepare:
-	-hdfs dfs -mkdir input
+	-hdfs dfs -mkdir -p input
 	curl https://en.wikipedia.org/wiki/Apache_Hadoop > /tmp/input.txt
 	hdfs dfs -put /tmp/input.txt input/file01
 	curl https://en.wikipedia.org/wiki/MapReduce > /tmp/input.txt
