@@ -14,9 +14,9 @@ URLCounter.jar: URLCounter.java
 prepare:
 	-hdfs dfs -mkdir ./input
 	curl https://en.wikipedia.org/wiki/Apache_Hadoop > /tmp/input.txt
-	hdfs dfs -put /tmp/input.txt input/file01
+	hdfs dfs -put /tmp/input.txt ./input/file01
 	curl https://en.wikipedia.org/wiki/MapReduce > /tmp/input.txt
-	hdfs dfs -put /tmp/input.txt input/file02
+	hdfs dfs -put /tmp/input.txt ./input/file02
 
 filesystem:
 	-hdfs dfs -mkdir ./user
