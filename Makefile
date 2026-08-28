@@ -19,8 +19,8 @@ prepare:
 	hdfs dfs -put /tmp/input.txt input/file02
 
 filesystem:
-	-hdfs dfs -mkdir /user
-	-hdfs dfs -mkdir /user/$(USER)
+	-hdfs dfs -mkdir ./user
+	-hdfs dfs -mkdir ./user/$(USER)
 
 run: URLCounter.jar
 	-rm -rf output
