@@ -12,6 +12,7 @@ URLCounter.jar: URLCounter.java
 	-rm -f URLCounter*.class
 
 prepare:
+    -rm -rf input/file01
 	-hdfs dfs -mkdir input
 	curl https://en.wikipedia.org/wiki/Apache_Hadoop > /tmp/input.txt
 	hdfs dfs -put /tmp/input.txt input/file01
