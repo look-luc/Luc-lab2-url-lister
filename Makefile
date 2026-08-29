@@ -19,8 +19,8 @@ prepare:
 	hdfs dfs -put /tmp/input.txt input/file02
 
 filesystem:
-	-hdfs dfs -mkdir /usr
-	-hdfs dfs -mkdir /usr/$(USER)
+	-hdfs dfs -mkdir ./user
+	-hdfs dfs -mkdir ./user/$(USER)
 
 run: WordCount1.jar
 	-rm -rf output
