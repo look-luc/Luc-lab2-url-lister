@@ -22,9 +22,9 @@ filesystem:
 	-hdfs dfs -mkdir -p /user
 	-hdfs dfs -mkdir /user/$(USER)
 
-run: WordCount1.jar
-	-rm -rf output
-	hadoop jar WordCount1.jar WordCount1 input output
+run: URLCounter.jar
+	-rm -r -f output
+	hadoop jar URLCounter.jar URLCounter input output
 
 
 ##
