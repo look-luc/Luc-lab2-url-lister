@@ -111,4 +111,4 @@ mw-data:TemplateStyles:r999302996 110
 
 You should also include a comparison of the 2-node and 4-node execution time. Discuss the execution times and any suprising outcomes.
 
-Commit your code by the due state with the `SOLUTION.md` file and push it to Github. Make certain you can see your results on the Github website.
+Commit your code by the due state with the [SOLUTION.md](SOLUTION.md) file and push it to Github. Make certain you can see your results on the Github website.
